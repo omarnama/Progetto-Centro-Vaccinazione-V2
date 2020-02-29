@@ -10,7 +10,8 @@ import it.jac.javadb.entity.Persona;
 import it.jac.javadb.dao.PersonaDao;
 
 public class Utils {
-
+	
+	
 	
 	public static void stampaLista(List<Persona> list) {
 		//List<Item> list
@@ -21,14 +22,18 @@ public class Utils {
 		for(Persona bean : list) {
 
 			sb
-			//.append("|")
-			//.append(StringUtils.rightPad(bean.getId(), 10))
+			.append("|")
+			.append(StringUtils.leftPad(bean.getId(), 10))
 			.append("|")
 			.append(StringUtils.rightPad(bean.getNome(), 30))
 			.append("|")
-			.append(StringUtils.rightPad(bean.getTel(), 50))
+			.append(StringUtils.rightPad(bean.getCognome(), 50))
 			.append("|")
-			.append(StringUtils.rightPad(bean.getIndirizzo(), 50));
+			.append(StringUtils.rightPad(bean.getData_nascita()))
+			.append("|")
+			.append(StringUtils.rightPad(bean.getRecapito_telefonico(), 15))
+			.append("|")
+			.append(StringUtils.rightPad(bean.getIndirizzo_residenza(), 50));
 			//.append("|")
 			//.append(StringUtils.rightPad(bean.getCreationTime()))
 			//.append("|")

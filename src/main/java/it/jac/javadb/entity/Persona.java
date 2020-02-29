@@ -258,7 +258,7 @@ public class Persona implements Serializable{
 	}
 
 	
-
+/* prova va bene ma ora prova cons tring builder
 	@Override
 	//da rivedere, dovrebbe andare bene Ven 17/01 15:48 on IoT Lesson
 	public String toString() {
@@ -266,6 +266,42 @@ public class Persona implements Serializable{
 				+ ", recapito_telefonico=" + recapito_telefonico + ",  +  indirizzo_residenza=" + indirizzo_residenza
 				+ ", creation_user=" + creation_user + ", creation_time=" + creation_time + ", update_user=" + update_user
 				+ ", update_time=" + update_time + "]";
+	}
+	*/
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Persona [vaccinazioni=");
+		builder.append(vaccinazioni);
+		builder.append(", vaccinations=");
+		builder.append(vaccinations);
+		builder.append(", vaccines=");
+		builder.append(vaccines);
+		builder.append(", malattie=");
+		builder.append(malattie);
+		builder.append(", id=");
+		builder.append(id);
+		builder.append(", nome=");
+		builder.append(nome);
+		builder.append(", cognome=");
+		builder.append(cognome);
+		builder.append(", data_nascita=");
+		builder.append(data_nascita);
+		builder.append(", recapito_telefonico=");
+		builder.append(recapito_telefonico);
+		builder.append(", indirizzo_residenza=");
+		builder.append(indirizzo_residenza);
+		builder.append(", creation_time=");
+		builder.append(creation_time);
+		builder.append(", creation_user=");
+		builder.append(creation_user);
+		builder.append(", update_user=");
+		builder.append(update_user);
+		builder.append(", update_time=");
+		builder.append(update_time);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	public Date setData_nascita(Date dataNascita) {
