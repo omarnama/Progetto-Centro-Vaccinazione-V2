@@ -28,9 +28,9 @@ import it.jac.javadb.util.Utils;
 public class MainApp {
 
 	private static final Logger log = LogManager.getLogger(MainApp.class);
-	
+
 	public static MainApp mn = new MainApp();
-	
+
 	public static final int DBConnection = 1;
 
 	public static final int ESCI = 0;
@@ -54,32 +54,34 @@ public class MainApp {
 
 	public static List<Persona> persone = new ArrayList<Persona>(10);
 	public static List<Malattia> malattie = new ArrayList<Malattia>(10);
-	/*public static List<Vaccino> vaccini = new ArrayList<Vaccino>(10);
-	public static List<Vaccinazione> vaccinazioni = new ArrayList<Vaccinazione>(10);*/
+	/*
+	 * public static List<Vaccino> vaccini = new ArrayList<Vaccino>(10); public
+	 * static List<Vaccinazione> vaccinazioni = new ArrayList<Vaccinazione>(10);
+	 */
 	static final private Scanner in = new Scanner(System.in);
-	
-	/*Parte progetto SF*/
-	
-	public static void main(String[] args) throws ParseException /*throws ParseException, InputMismatchException*/ {
+
+	/* Parte progetto SF */
+
+	public static void main(String[] args) throws ParseException /* throws ParseException, InputMismatchException */ {
 		System.out.println("App Started");
 		Scanner scanner = new Scanner(System.in);
 		PersonaService ps = new PersonaService();
 
 		gestisciScelta();
-		//VaccinatoService vs = new VaccinatoService();
-		//vs.getVaccinazioni();
-		//scanner.nextLine();
-		//AmmalatoDao dao = new AmmalatoDao();
-		//dao.getMediaPersoneAmmalate();
+		// VaccinatoService vs = new VaccinatoService();
+		// vs.getVaccinazioni();
+		// scanner.nextLine();
+		// AmmalatoDao dao = new AmmalatoDao();
+		// dao.getMediaPersoneAmmalate();
 		scanner.nextLine();
-		//VaccinoService vcs = new VaccinoService();
-		//vcs.getMalattiePrevenute();
-		//scanner.nextLine();
-		//vcs.getVaccinazioniEffettuate();
-		//scanner.nextLine();
-		//MalattiaService ms = new MalattiaService();
-		//ms.getPersoneAmmalate();
-		
+		// VaccinoService vcs = new VaccinoService();
+		// vcs.getMalattiePrevenute();
+		// scanner.nextLine();
+		// vcs.getVaccinazioniEffettuate();
+		// scanner.nextLine();
+		// MalattiaService ms = new MalattiaService();
+		// ms.getPersoneAmmalate();
+
 	}
 
 	public static boolean hasNext(List<?> list) {
@@ -97,10 +99,14 @@ public class MainApp {
 
 	private static void printMenu() {
 		// TODO Auto-generated method stub
-		System.out.println("n0)DBConnection = 1 \n1) Stampa lista = 2\n2) Aggiungi = 3 \n3) Modifica = 4 \n4) Elimina = 5 \n5) Cerca = 6\n0) Esci = 0");
+		System.out.println(
+				"n0)DBConnection = 1 \n1) Stampa lista = 2\n2) Aggiungi = 3 \n3) Modifica = 4 \n4) Elimina = 5 \n5) Cerca = 6\n0) Esci = 0");
 	}
 
-	public static void gestisciScelta() throws ParseException  {/*throws ParseException*/
+	/**
+	 * @throws ParseException
+	 */
+	public static void gestisciScelta() throws ParseException {
 		System.out.println("Inserisci la tipologia del dato che vuoi gestire: ");
 		String s = in.nextLine();
 		Scanner in = new Scanner(System.in);
@@ -116,30 +122,28 @@ public class MainApp {
 				PersonaDao dao = new PersonaDao();
 
 				switch (scelta) {
-				
+
 				case DBConnection: {
-					
-					
-					
-					
+
 					HibernateUtil.getSessionFactory();
 					System.out.println("Test connessione");
-					//PersonaDao dao1 = DaoFactory.createItemNativeDao();
-					
+					// PersonaDao dao1 = DaoFactory.createItemNativeDao();
+
 					boolean test = dao.testConnessione();
 					if (test) {
-					
+
 						log.info("Test OK");
 					}
 					break;
 				}
-				
+
 				case STAMPALISTA: {
 					persone = dao.findAll();
 
 					for (int i = -1; i < persone.size() - 1; i++) {
 						if (hasNext(persone)) {
 							MainApp mn = new MainApp();
+							// SISTEMA IN BASE A NEXT OBJECT IN BASSO
 							System.out.println(mn.next(persone));
 						} else {
 							System.out.println("Lista terminata");
@@ -183,7 +187,7 @@ public class MainApp {
 					break;
 				}
 				}
-			}while (scelta != ESCI);
+			} while (scelta != ESCI);
 		}
 		if (s.equals("malattie")) {
 
@@ -194,24 +198,20 @@ public class MainApp {
 				MalattiaDao dao = new MalattiaDao();
 
 				switch (scelta) {
-				
+
 				case DBConnection: {
-					
-					
-					
+
 					/*
-					HibernateUtil.getSessionFactory();
-					System.out.println("Test connessione");
-					//PersonaDao dao1 = DaoFactory.createItemNativeDao();
-					
-					boolean test = dao.testConnessione();
-					if (test) {
-					
-						log.info("Test OK");
-					}*/
+					 * HibernateUtil.getSessionFactory(); System.out.println("Test connessione");
+					 * //PersonaDao dao1 = DaoFactory.createItemNativeDao();
+					 * 
+					 * boolean test = dao.testConnessione(); if (test) {
+					 * 
+					 * log.info("Test OK"); }
+					 */
 					break;
 				}
-				
+
 				case STAMPALISTA: {
 					malattie = dao.findAll();
 
@@ -261,145 +261,98 @@ public class MainApp {
 					break;
 				}
 				}
-			}while (scelta != ESCI);
+			} while (scelta != ESCI);
 		}
 	}
-	
-	
-	
-	
-			public Object next(List<?> list) {
-				position++;
-				Object o = list.get(position);
-				return o != null ? o : null;
-			}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	mio mainapp progetto archsoft data 20 01 2020
-	public static void main(String[] args) {
-		
-		log.info("App Started");
 
-		HibernateUtil.getSessionFactory();
-		
-		do {
-
-			System.out.println("Scegliere la funzione: ");
-			Scanner in = new Scanner(System.in);
-			String s = in.nextLine();
-			
-			PersonaService dao = new PersonaService();
-			PersonaDao dao1 = new PersonaDao();
-			
-			switch (s) {
-			case "1": {
-
-				System.out.println("Test connessione");
-				
-				
-				boolean test = dao1.testConnessione();
-				if (test) {
-				
-					log.info("Test OK");
-				}
-				
-				break;
-			}
-			case "2": {
-
-				System.out.println("Stampa lista");
-
-				PersonaService service = new PersonaService();
-				List<Persona> list = service.findAll();
-				
-				Utils.stampaLista(list);
-				break;
-			}
-			case "3": {
-
-				System.out.println("Aggiungi articolo alla lista");
-
-				Item item = createItemFromUserInput();
-				
-				ItemService service = new ItemService();
-				service.saveItem(item);
-				
-				break;
-			}
-			case "4": {
-
-				System.out.println("Modifica articolo alla lista");
-				
-// 				TODO implementare
-				
-				break;
-			}
-			case "5": {
-
-				System.out.println("Elimina articolo alla lista");
-
-// 				TODO implementare
-				
-				break;
-			}
-			default: {
-
-				System.out.println("Scelta non gestita, l'applicazione termina");
-
-				log.info("App finished");
-				return;
-			}
-			}
-
-		} while (true);
-
+	// TO-DO
+	// SISTEMA QUESTO COSì CHE QUANDO ITERO STMAPA LISTA STAMPA TUTTO 1 DOPO L'ALTRO
+	public Object next(List<?> list) {
+		position++;
+		Object o = list.get(position);
+		return o != null ? o : null;
 	}
-	*/
 
-	
 	/*
-	private static Item createItemFromUserInput() {
+	 * mio mainapp progetto archsoft data 20 01 2020 public static void
+	 * main(String[] args) {
+	 * 
+	 * log.info("App Started");
+	 * 
+	 * HibernateUtil.getSessionFactory();
+	 * 
+	 * do {
+	 * 
+	 * System.out.println("Scegliere la funzione: "); Scanner in = new
+	 * Scanner(System.in); String s = in.nextLine();
+	 * 
+	 * PersonaService dao = new PersonaService(); PersonaDao dao1 = new
+	 * PersonaDao();
+	 * 
+	 * switch (s) { case "1": {
+	 * 
+	 * System.out.println("Test connessione");
+	 * 
+	 * 
+	 * boolean test = dao1.testConnessione(); if (test) {
+	 * 
+	 * log.info("Test OK"); }
+	 * 
+	 * break; } case "2": {
+	 * 
+	 * System.out.println("Stampa lista");
+	 * 
+	 * PersonaService service = new PersonaService(); List<Persona> list =
+	 * service.findAll();
+	 * 
+	 * Utils.stampaLista(list); break; } case "3": {
+	 * 
+	 * System.out.println("Aggiungi articolo alla lista");
+	 * 
+	 * Item item = createItemFromUserInput();
+	 * 
+	 * ItemService service = new ItemService(); service.saveItem(item);
+	 * 
+	 * break; } case "4": {
+	 * 
+	 * System.out.println("Modifica articolo alla lista");
+	 * 
+	 * // TODO implementare
+	 * 
+	 * break; } case "5": {
+	 * 
+	 * System.out.println("Elimina articolo alla lista");
+	 * 
+	 * // TODO implementare
+	 * 
+	 * break; } default: {
+	 * 
+	 * System.out.println("Scelta non gestita, l'applicazione termina");
+	 * 
+	 * log.info("App finished"); return; } }
+	 * 
+	 * } while (true);
+	 * 
+	 * }
+	 */
 
-		Item item = new Item();
-
-		Scanner in = new Scanner(System.in);
-		
-		System.out.print("Inserire codice articolo: ");
-		item.setCode(in.nextLine());
-
-		System.out.print("Inserire nome articolo: ");
-		item.setName(in.nextLine());
-
-		System.out.print("Inserire descrizione articolo: ");
-		item.setDescription(in.nextLine());
-
-		System.out.print("Inserire descrizione articolo (estesa): ");
-		item.setLongDescription(in.nextLine());
-
-		return item;
-	}
-	*/
+	/*
+	 * private static Item createItemFromUserInput() {
+	 * 
+	 * Item item = new Item();
+	 * 
+	 * Scanner in = new Scanner(System.in);
+	 * 
+	 * System.out.print("Inserire codice articolo: "); item.setCode(in.nextLine());
+	 * 
+	 * System.out.print("Inserire nome articolo: "); item.setName(in.nextLine());
+	 * 
+	 * System.out.print("Inserire descrizione articolo: ");
+	 * item.setDescription(in.nextLine());
+	 * 
+	 * System.out.print("Inserire descrizione articolo (estesa): ");
+	 * item.setLongDescription(in.nextLine());
+	 * 
+	 * return item; }
+	 */
 }

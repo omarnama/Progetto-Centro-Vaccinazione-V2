@@ -1,6 +1,5 @@
 package it.jac.javadb.dao;
 
-
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -13,18 +12,16 @@ import it.jac.javadb.entity.Malattia;
 import it.jac.javadb.util.HibernateUtil;
 
 public class MalattiaDao {
-	
-
 
 	private static final Logger log = LogManager.getLogger(MalattiaDao.class);
 
-	/*Trova Persona tramite Id*/
-	public Malattia findMalattiaById (int id) {
-		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+	/* Trova Persona tramite Id */
+	public Malattia findMalattiaById(int id) {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			return session.find(Malattia.class, id);
 		}
-	} 
-	
+	}
+
 	public void save(Malattia malattia) {
 
 		log.debug("try to save malattia " + malattia);
@@ -36,29 +33,26 @@ public class MalattiaDao {
 		}
 
 	}
-	
-	
-	public void updateMalattia(Malattia malattia) {//Metodo Update per updatePersona in PersonaService
+
+	public void updateMalattia(Malattia malattia) {// Metodo Update per updatePersona in PersonaService
 		log.debug("try to update malattia " + malattia);
-		
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
 			Transaction tx = session.beginTransaction();
 			try {
-				
+
 				session.update(malattia);
 				tx.commit();
 				log.debug("malattia updated");
 
-			} catch(Exception e) {
+			} catch (Exception e) {
 				log.error("Error updating malattia", e);
 				tx.rollback();
 			}
 		}
 	}
-	
-	
+
 	public void eliminaMalattia(int id) {
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -71,7 +65,7 @@ public class MalattiaDao {
 		}
 	}
 
-	/*Trova tutte le malattie*/
+	/* Trova tutte le malattie */
 	public List<Malattia> findAll() {
 
 		log.debug("try to find all entities");
@@ -86,5 +80,5 @@ public class MalattiaDao {
 
 			return list;
 		}
-	}	
+	}
 }

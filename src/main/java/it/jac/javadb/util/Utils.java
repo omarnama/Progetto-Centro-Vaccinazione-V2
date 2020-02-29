@@ -1,35 +1,39 @@
 package it.jac.javadb.util;
 
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import it.jac.javadb.entity.Persona;
 import it.jac.javadb.dao.PersonaDao;
 
 public class Utils {
 	
-	
+	private static final Logger log = LogManager.getLogger(Utils.class);
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public static void stampaLista(List<Persona> list) {
 		//List<Item> list
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("             \n");
+		sb.append("-----------------------------------\n");
 		for(Persona bean : list) {
 
 			sb
-			.append("|")
-			.append(StringUtils.leftPad(bean.getId(), 10))
+			//.append("|")
+			//.append(StringUtils.rightPad(bean.getId(), 10))
 			.append("|")
 			.append(StringUtils.rightPad(bean.getNome(), 30))
 			.append("|")
 			.append(StringUtils.rightPad(bean.getCognome(), 50))
 			.append("|")
-			.append(StringUtils.rightPad(bean.getData_nascita()))
+			.append(sdf.format(bean.getdata_nascita()))
 			.append("|")
 			.append(StringUtils.rightPad(bean.getRecapito_telefonico(), 15))
 			.append("|")
