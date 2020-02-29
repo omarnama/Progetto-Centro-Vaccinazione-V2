@@ -33,11 +33,11 @@ public class Utils {
 			.append("|")
 			.append(StringUtils.rightPad(bean.getCognome(), 50))
 			.append("|")
-			.append(sdf.format(bean.getdata_nascita()))
+			.append(sdf.format(bean.getData_nascita()))
 			.append("|")
 			.append(StringUtils.rightPad(bean.getRecapito_telefonico(), 15))
 			.append("|")
-			.append(StringUtils.rightPad(bean.getIndirizzo_residenza(), 50));
+			.append(StringUtils.rightPad(bean.getIndirizzo_residenza(), 100));
 			//.append("|")
 			//.append(StringUtils.rightPad(bean.getCreationTime()))
 			//.append("|")

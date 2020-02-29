@@ -69,18 +69,18 @@ public class PersonaService {// implements Iterator <Persona>
 		Scanner in = new Scanner(System.in);
 
 		System.out.print("Inserire nome della persona: ");
-		persona.setNome(in.nextLine());
+		persona.setNome(in.next());
 
 		System.out.print("Inserire cognome della persona: ");
-		persona.setCognome(in.nextLine());
+		persona.setCognome(in.next());
 
-		System.out.println("Inserisci data di nascita");
-		persona.setdata_nascita(in.nextLine());
+		System.out.println("Inserisci data di nascita: ");
+		persona.setDataNascita(in.next());
 
-		System.out.println("Inserisci numero telefonico");
-		persona.setRecapito_telefonico(in.nextLine());
+		System.out.println("Inserisci numero telefonico: ");
+		persona.setRecapito_telefonico(in.next());
 
-		System.out.println("Inserisci indirizzo di residenza");
+		System.out.println("Inserisci indirizzo di residenza: ");
 		persona.setIndirizzo_residenza(in.nextLine());
 
 		persona.setCreation_user("Amministratore");
@@ -108,12 +108,12 @@ public class PersonaService {// implements Iterator <Persona>
 		recapitoTelefonico = s.next();
 
 		System.out.println("Inserisci indirizzo di residenza");
-		indirizzoResidenza = s.next();
+		indirizzoResidenza = s.nextLine();
 
 		Persona persona = new Persona();
 		persona.setNome(nome);
 		persona.setCognome(cognome);
-		persona.setdata_nascita(data_nascita);
+		persona.setDataNascita(data_nascita);
 		persona.setRecapito_telefonico(recapitoTelefonico);
 		persona.setIndirizzo_residenza(indirizzoResidenza);
 		persona.setId(id);

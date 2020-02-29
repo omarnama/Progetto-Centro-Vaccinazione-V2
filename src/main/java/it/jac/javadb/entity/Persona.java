@@ -73,7 +73,7 @@ public class Persona implements Serializable {
 	 * @Column(name = "data_nascita") private java.sql.Date data_nascita;
 	 */
 	@Column(name = "data_nascita")
-	private String data_nascita;
+	private Date data_nascita;
 
 	@Column(name = "recapito_telefonico", length = 20)
 	private String recapito_telefonico;
@@ -179,18 +179,18 @@ public class Persona implements Serializable {
 		this.setId(id);
 		this.setNome(nome);
 		this.setCognome(cognome);
-		this.setdata_nascita(dataNascita);// this.setDataNascita(data_nascita); 4 Data da fpormattare bene
+		this.setDataNascita(dataNascita);// this.setDataNascita(data_nascita); 4 Data da fpormattare bene
 		this.setRecapito_telefonico(recapitoTelefonico);
 		this.setIndirizzo_residenza(indirizzoResidenza);
 
 	}
 
-	public String getdata_nascita() {// prima era ->  public Date
+	public Date getData_nascita() {// prima era ->  public Date
 		return data_nascita;
 	}
 
-	public String setdata_nascita(String data_nascita) throws ParseException {
-		return data_nascita;
+	public String setDataNascita(String string) throws ParseException {
+		return string;
 	}
 	
 	
