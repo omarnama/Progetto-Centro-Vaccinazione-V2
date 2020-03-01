@@ -13,19 +13,18 @@ import it.jac.javadb.dao.MalattiaDao;
 import it.jac.javadb.dao.PersonaDao;
 import it.jac.javadb.entity.Persona;
 import it.jac.javadb.MainApp;
-/*import it.jac.javadb.dao.AmmalatoDao;*/
+
 import it.jac.javadb.entity.Malattia;
 import it.jac.javadb.entity.Vaccinazione;
 import it.jac.javadb.entity.Vaccino;
 import it.jac.javadb.service.MalattiaService;
-/*import it.jac.javadb.service.VaccinatoService;*/
-/*import it.jac.javadb.service.VaccinoService;*/
+import it.jac.javadb.service.ComponentPattern;
 import it.jac.javadb.service.PersonaService;
 import it.jac.javadb.util.DaoFactory;
 import it.jac.javadb.util.HibernateUtil;
 import it.jac.javadb.util.Utils;
 
-public class MainApp {
+public class MainApp implements ComponentPattern {
 
 	private static final Logger log = LogManager.getLogger(MainApp.class);
 
@@ -59,21 +58,24 @@ public class MainApp {
 	 * static List<Vaccinazione> vaccinazioni = new ArrayList<Vaccinazione>(10);
 	 */
 	static final private Scanner in = new Scanner(System.in);
-
-	/* Parte progetto SF */
-
+	
+	
+	
 	public static void main(String[] args) throws ParseException /* throws ParseException, InputMismatchException */ {
-		System.out.println("App Started");
+		System.out.println("App Centro Vaccino Started");
 		Scanner scanner = new Scanner(System.in);
 		PersonaService ps = new PersonaService();
-
-		gestisciScelta();
+		
+		MainApp mn = new MainApp();
+		//gestisciScelta();
 		// VaccinatoService vs = new VaccinatoService();
 		// vs.getVaccinazioni();
 		// scanner.nextLine();
 		// AmmalatoDao dao = new AmmalatoDao();
 		// dao.getMediaPersoneAmmalate();
+		mn.operation();
 		scanner.nextLine();
+		
 		// VaccinoService vcs = new VaccinoService();
 		// vcs.getMalattiePrevenute();
 		// scanner.nextLine();
@@ -81,7 +83,7 @@ public class MainApp {
 		// scanner.nextLine();
 		// MalattiaService ms = new MalattiaService();
 		// ms.getPersoneAmmalate();
-
+		
 	}
 
 	public static boolean hasNext(List<?> list) {
@@ -104,9 +106,10 @@ public class MainApp {
 	}
 
 	/**
-	 * @throws ParseException
+	 * @throws ParseException 
 	 */
-	public static void gestisciScelta() throws ParseException {
+	@Override
+	public void operation() throws ParseException {
 		System.out.println("Inserisci la tipologia del dato che vuoi gestire: ");
 		String s = in.nextLine();
 		Scanner in = new Scanner(System.in);
@@ -154,7 +157,7 @@ public class MainApp {
 				}
 
 				case AGGIUNGI: {
-					ps.creaPersona(persone);
+					ps.add(persone);
 					break;
 				}
 
@@ -170,7 +173,7 @@ public class MainApp {
 				case ELIMINA: {
 					System.out.println("Inserisci l'id della persona da eliminare: ");
 					int id = in.nextInt();
-					ps.eliminaPersona(id);
+					ps.remove(id, null);
 					break;
 				}
 
@@ -228,7 +231,7 @@ public class MainApp {
 				}
 
 				case AGGIUNGI: {
-					ms.creaMalattia(malattie);
+					ms.add(malattie);
 					break;
 				}
 
@@ -244,7 +247,7 @@ public class MainApp {
 				case ELIMINA: {
 					System.out.println("Inserisci l'id della persona da eliminare: ");
 					int id = in.nextInt();
-					ms.eliminaMalattia(id);
+					ms.remove(id, null);
 					break;
 				}
 

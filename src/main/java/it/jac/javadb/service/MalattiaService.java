@@ -12,8 +12,9 @@ import org.hibernate.Session;
 import it.jac.javadb.dao.MalattiaDao;
 import it.jac.javadb.dao.PersonaDao;
 import it.jac.javadb.entity.Malattia;
+import it.jac.javadb.entity.Persona;
 
-public class MalattiaService {
+public class MalattiaService implements ComponentPattern<Malattia> {
 	private static final Logger log = LogManager.getLogger(MalattiaService.class);
 	private static MalattiaDao dao = new MalattiaDao();
 	
@@ -81,10 +82,11 @@ public class MalattiaService {
 		dao.save(malattia);
 	}
 	
-	public void removeMalattia(int id, List<Malattia> malattie) {
+	@Override
+	public void remove(int id, List<Malattia> malattie) {
 		Scanner scanner = new Scanner(System.in);
 		MalattiaService ps = new MalattiaService();
-		ps.eliminaMalattia(id);
+		ps.remove(id, malattie);
 		Malattia p = ps.findMalattiaById(id);
 	
 		for(Malattia malattia: malattie)
@@ -94,30 +96,39 @@ public class MalattiaService {
 				malattie.remove(malattia);
 			}
 		}
-		
+		/*
 		 Malattia dao = new Malattia();
 		    dao.setId(id);
 		    Object sessionFactory;
 			Session  session=((Object) sessionFactory).getCurrentSession();
 				session.delete(dao);
+				*/
+		System.out.println("Elimina malattia n° " + id);
+
+		dao.eliminaMalattia(id);
 	}
 	
 	
-
-	public void eliminaMalattia(int id) {
+/*
+ * @Override
+	public void remove(int id) {
 
 		System.out.println("Elimina malattia n° " + id);
 
 		dao.eliminaMalattia(id);
 	}
 	
-
-	public void creaMalattia(List<Malattia> malattie) throws ParseException {
+*/
+	@Override
+	public void add(List<Malattia> malattie) {
 		Scanner scanner = new Scanner(System.in);
 		MalattiaService ms = new MalattiaService();
 		Malattia malattia = ms.createMalattiaFromUserInput(scanner);
 		malattie.add(malattia);
 		
 	}
-
+	
+	@Override
+	public void operation() {
+	}
 }

@@ -16,13 +16,14 @@ import org.hibernate.Session;
 import it.jac.javadb.dao.PersonaDao;
 import it.jac.javadb.entity.Malattia;
 import it.jac.javadb.entity.Persona;
+import it.jac.javadb.service.ComponentPattern;
 import it.jac.javadb.service.PersonaService;
 import it.jac.javadb.util.DaoFactory;
 
 /* Classe Service dove si diachiara la logica della tabella, test connesione al db, inserimento modifica, cancellazione 
  * e aggiornamento rifacendosi alla classe DAO */
 
-public class PersonaService {// implements Iterator <Persona>
+public class PersonaService implements ComponentPattern<Persona> {// implements Iterator <Persona>
 
 	private static final Logger log = LogManager.getLogger(PersonaService.class);
 	private static PersonaDao dao = new PersonaDao();
@@ -138,10 +139,10 @@ public class PersonaService {// implements Iterator <Persona>
 		dao.save(persona);
 	}
 
-	public void removePerson(int id, List<Persona> persone) {
+	public void remove(int id, List<Persona> persone) {
 		Scanner scanner = new Scanner(System.in);
 		PersonaService ps = new PersonaService();
-		ps.eliminaPersona(id);
+		ps.remove(id, persone);
 		Persona p = ps.findPersonaById(id);
 
 		for (Persona persona : persone) {
@@ -150,15 +151,13 @@ public class PersonaService {// implements Iterator <Persona>
 			}
 		}
 
-		Persona dao = new Persona();
+		/*Persona dao = new Persona();
 		dao.setId(id);
+		/*
 		Object sessionFactory;
 		Session session = ((Object) sessionFactory).getCurrentSession();
 		session.delete(dao);
-	}
-
-	public void eliminaPersona(int id) {
-
+		*/
 		System.out.println("Elimina persona n° " + id);
 
 		dao.eliminaPersona(id);
@@ -175,13 +174,20 @@ public class PersonaService {// implements Iterator <Persona>
 
 		// u.stampaListaPersone(Arrays.asList(persona)); vedi util in fondo
 	}
-
-	public void creaPersona(List<Persona> persone) throws ParseException {
+	
+	@Override
+	public void add(List<Persona> persone) throws ParseException {
 		Scanner scanner = new Scanner(System.in);
 		//PersonaService ps = new PersonaService();
 		Persona persona = PersonaService.createPersonaFromUserInput(scanner);
 		persone.add(persona);
 
+	}
+
+	
+	
+	@Override
+	public void operation() {
 	}
 
 }
