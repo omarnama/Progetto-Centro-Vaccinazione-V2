@@ -1,8 +1,8 @@
 package it.jac.javadb.util;
 
-import java.io.PrintStream;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +33,7 @@ public class Utils {
 			.append("|")
 			.append(StringUtils.rightPad(bean.getCognome(), 50))
 			.append("|")
-			.append(sdf.format(bean.getData_nascita()))
+			.append(sdf.format(bean.getDataNascita()))
 			.append("|")
 			.append(StringUtils.rightPad(bean.getRecapito_telefonico(), 15))
 			.append("|")

@@ -119,6 +119,24 @@ public class Persona implements Serializable {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
+	
+	
+	public java.sql.Date getDataNascita() {// prima era ->  public Date
+		return (java.sql.Date) data_nascita;
+	}
+
+	public void setDataNascita(String date2) throws ParseException {
+		this.data_nascita = java.sql.Date.valueOf(date2);
+	}
+	
+	
+//	public Date getDataNascita() {
+//		return data_nascita;
+//	}
+//	
+//	public void setDataNascita(Date date2) {
+//		this.data_nascita=date2;
+//	}
 
 	public String getRecapito_telefonico() {
 		return recapito_telefonico;
@@ -185,13 +203,7 @@ public class Persona implements Serializable {
 
 	}
 
-	public Date getData_nascita() {// prima era ->  public Date
-		return data_nascita;
-	}
-
-	public String setDataNascita(String string) throws ParseException {
-		return string;
-	}
+	
 	
 	
 //	public String getDataNascita() {// prima era ->  public Date

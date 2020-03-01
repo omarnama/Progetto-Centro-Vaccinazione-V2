@@ -75,13 +75,27 @@ public class PersonaService {// implements Iterator <Persona>
 		persona.setCognome(in.next());
 
 		System.out.println("Inserisci data di nascita: ");
-		persona.setDataNascita(in.next());
+		
+		String data_nascita = in.next();
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+//		Date date2=null;
+//		
+//		try {
+//		    //Parsing the String
+//		    date2 = dateFormat.parse(data_nascita);
+//		} catch (ParseException e) {
+//		    // TODO Auto-generated catch block
+//		    e.printStackTrace();
+//		}
+		
+		//persona.setDataNascita(date2);
+		persona.setDataNascita(data_nascita);
 
 		System.out.println("Inserisci numero telefonico: ");
 		persona.setRecapito_telefonico(in.next());
 
 		System.out.println("Inserisci indirizzo di residenza: ");
-		persona.setIndirizzo_residenza(in.nextLine());
+		persona.setIndirizzo_residenza(in.next());
 
 		persona.setCreation_user("Amministratore");
 		persona.setCreation_time(new Date());
@@ -89,9 +103,11 @@ public class PersonaService {// implements Iterator <Persona>
 		dao.save(persona);
 		return persona;
 	}
-
+	//private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
 	public Persona modificaPersona(Scanner s, int id) throws ParseException {
-		String nome, cognome, data_nascita, recapitoTelefonico, indirizzoResidenza;
+		String nome, cognome, recapitoTelefonico, indirizzoResidenza;
+		String data_nascita;
 
 		System.out.println("Inserisci l'id della persona da modifcare: " + id);
 
@@ -102,18 +118,33 @@ public class PersonaService {// implements Iterator <Persona>
 		cognome = s.next();
 
 		System.out.println("Inserisci data di nascita");
+		
 		data_nascita = s.next();
+		//sdf.parse(data_nascita);
+		
+		//String date = scanner.next();
+/*
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+		Date date2=null;
+		try {
+		    //Parsing the String
+		    date2 = dateFormat.parse(data_nascita);
+		} catch (ParseException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}*/
+		
 
 		System.out.println("Inserisci numero telefonico");
 		recapitoTelefonico = s.next();
 
 		System.out.println("Inserisci indirizzo di residenza");
-		indirizzoResidenza = s.nextLine();
+		indirizzoResidenza = s.next();
 
 		Persona persona = new Persona();
 		persona.setNome(nome);
 		persona.setCognome(cognome);
-		persona.setDataNascita(data_nascita);
+		persona.setDataNascita(data_nascita);//data_nascita
 		persona.setRecapito_telefonico(recapitoTelefonico);
 		persona.setIndirizzo_residenza(indirizzoResidenza);
 		persona.setId(id);
@@ -160,7 +191,7 @@ public class PersonaService {// implements Iterator <Persona>
 		dao.eliminaPersona(id);
 	}
 
-	/* Metodo stampaLista che si collega a Utils (stampa lista persone arraylist) */
+	/* Metodo stampaLista che si collega sdf Utils (stampa lista persone arraylist) */
 	public void stampaPersona(int idPer) {
 
 		System.out.println("Stampa lista persone (ArrayList) ");
@@ -174,8 +205,8 @@ public class PersonaService {// implements Iterator <Persona>
 
 	public void creaPersona(List<Persona> persone) throws ParseException {
 		Scanner scanner = new Scanner(System.in);
-		PersonaService ps = new PersonaService();
-		Persona persona = ps.createPersonaFromUserInput(scanner);
+		//PersonaService ps = new PersonaService();
+		Persona persona = PersonaService.createPersonaFromUserInput(scanner);
 		persone.add(persona);
 
 	}
