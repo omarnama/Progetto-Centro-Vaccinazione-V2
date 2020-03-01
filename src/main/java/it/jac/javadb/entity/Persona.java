@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import it.jac.javadb.lezione1b.entity.Persona;
 
 /*
  * import it.jac.javadb.lezione1b.entity.Malattia;
@@ -306,4 +309,11 @@ public class Persona implements Serializable {
 		return dataNascita;
 	}
 	*/
+	
+	//Pattern Iterator Persona
+	public static Iterator iterator() {
+
+		Iterator<Persona> persone = Persona.iterator();
+		return persone;
+	}
 }

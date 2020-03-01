@@ -77,18 +77,6 @@ public class PersonaService {// implements Iterator <Persona>
 		System.out.println("Inserisci data di nascita: ");
 		
 		String data_nascita = in.next();
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-//		Date date2=null;
-//		
-//		try {
-//		    //Parsing the String
-//		    date2 = dateFormat.parse(data_nascita);
-//		} catch (ParseException e) {
-//		    // TODO Auto-generated catch block
-//		    e.printStackTrace();
-//		}
-		
-		//persona.setDataNascita(date2);
 		persona.setDataNascita(data_nascita);
 
 		System.out.println("Inserisci numero telefonico: ");
@@ -103,7 +91,6 @@ public class PersonaService {// implements Iterator <Persona>
 		dao.save(persona);
 		return persona;
 	}
-	//private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public Persona modificaPersona(Scanner s, int id) throws ParseException {
 		String nome, cognome, recapitoTelefonico, indirizzoResidenza;
@@ -119,37 +106,7 @@ public class PersonaService {// implements Iterator <Persona>
 
 		System.out.println("Inserisci data di nascita");
 		
-		data_nascita = s.next();
-		//sdf.parse(data_nascita);
-		
-		//String date = scanner.next();
-/*
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-		Date date2=null;
-		try {
-		    //Parsing the String
-		    date2 = dateFormat.parse(data_nascita);
-		} catch (ParseException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}*/
-		
-		
-		 SimpleDateFormat sdf = new SimpleDateFormat(); // creo l'oggetto
-		    String dataStr = sdf.format(data_nascita); // data corrente (20 febbraio 2014)
-		    /*
-		    // output atteso: 2014, 02, 20
-		    sdf.applyPattern("yyyy, MM, dd");  
-		    System.out.println(dataStr);  
-		         
-		    // output atteso: 2014-02-20
-		    sdf.applyPattern("yyyy-MM-dd");
-		    System.out.println(dataStr);  
-			*/
-		    // output atteso: 20/02/2014
-		    sdf = new SimpleDateFormat("dd/MM/yyyy");
-		    //System.out.println(dataStr);
-		
+		data_nascita = s.next();	
 
 		System.out.println("Inserisci numero telefonico");
 		recapitoTelefonico = s.next();
@@ -160,7 +117,7 @@ public class PersonaService {// implements Iterator <Persona>
 		Persona persona = new Persona();
 		persona.setNome(nome);
 		persona.setCognome(cognome);
-		persona.setDataNascita(dataStr);//data_nascita
+		persona.setDataNascita(data_nascita);//data_nascita
 		persona.setRecapito_telefonico(recapitoTelefonico);
 		persona.setIndirizzo_residenza(indirizzoResidenza);
 		persona.setId(id);
