@@ -78,7 +78,7 @@ public class Persona implements Serializable {
 	@Column(name = "recapito_telefonico", length = 20)
 	private String recapito_telefonico;
 
-	@Column(name = "indirizzo_residenza", length = 40)
+	@Column(name = "indirizzo_residenza", length = 50)
 	private String indirizzo_residenza;
 
 	/*

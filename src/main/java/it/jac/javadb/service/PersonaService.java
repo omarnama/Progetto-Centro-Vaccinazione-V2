@@ -134,6 +134,22 @@ public class PersonaService {// implements Iterator <Persona>
 		    e.printStackTrace();
 		}*/
 		
+		
+		 SimpleDateFormat sdf = new SimpleDateFormat(); // creo l'oggetto
+		    String dataStr = sdf.format(data_nascita); // data corrente (20 febbraio 2014)
+		    /*
+		    // output atteso: 2014, 02, 20
+		    sdf.applyPattern("yyyy, MM, dd");  
+		    System.out.println(dataStr);  
+		         
+		    // output atteso: 2014-02-20
+		    sdf.applyPattern("yyyy-MM-dd");
+		    System.out.println(dataStr);  
+			*/
+		    // output atteso: 20/02/2014
+		    sdf = new SimpleDateFormat("dd/MM/yyyy");
+		    //System.out.println(dataStr);
+		
 
 		System.out.println("Inserisci numero telefonico");
 		recapitoTelefonico = s.next();
@@ -144,7 +160,7 @@ public class PersonaService {// implements Iterator <Persona>
 		Persona persona = new Persona();
 		persona.setNome(nome);
 		persona.setCognome(cognome);
-		persona.setDataNascita(data_nascita);//data_nascita
+		persona.setDataNascita(dataStr);//data_nascita
 		persona.setRecapito_telefonico(recapitoTelefonico);
 		persona.setIndirizzo_residenza(indirizzoResidenza);
 		persona.setId(id);
