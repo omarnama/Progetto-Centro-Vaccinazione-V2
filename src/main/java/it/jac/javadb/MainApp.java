@@ -3,6 +3,7 @@ package it.jac.javadb;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,14 +18,16 @@ import it.jac.javadb.MainApp;
 import it.jac.javadb.entity.Malattia;
 import it.jac.javadb.entity.Vaccinazione;
 import it.jac.javadb.entity.Vaccino;
+
 import it.jac.javadb.service.MalattiaService;
 import it.jac.javadb.service.ComponentPattern;
+import it.jac.javadb.service.IteratorPersona;
 import it.jac.javadb.service.PersonaService;
 import it.jac.javadb.util.DaoFactory;
 import it.jac.javadb.util.HibernateUtil;
 import it.jac.javadb.util.Utils;
 
-public class MainApp implements ComponentPattern {
+public class MainApp implements ComponentPattern, Iterator {
 
 	private static final Logger log = LogManager.getLogger(MainApp.class);
 
@@ -61,7 +64,7 @@ public class MainApp implements ComponentPattern {
 	
 	
 	
-	public static void main(String[] args) throws ParseException /* throws ParseException, InputMismatchException */ {
+	public static void main(String[] args)  throws ParseException, InputMismatchException {
 		System.out.println("App Centro Vaccino Started");
 		Scanner scanner = new Scanner(System.in);
 		PersonaService ps = new PersonaService();
@@ -204,20 +207,20 @@ public class MainApp implements ComponentPattern {
 
 				case DBConnection: {
 
-					/*
-					 * HibernateUtil.getSessionFactory(); System.out.println("Test connessione");
-					 * //PersonaDao dao1 = DaoFactory.createItemNativeDao();
-					 * 
-					 * boolean test = dao.testConnessione(); if (test) {
-					 * 
-					 * log.info("Test OK"); }
-					 */
+					
+					  HibernateUtil.getSessionFactory(); System.out.println("Test connessione");
+					 //PersonaDao dao1 = DaoFactory.createItemNativeDao();
+					 
+					 boolean test = dao.testConnessione(); if (test) {
+					 
+					 log.info("Test OK"); }
+					 
 					break;
 				}
 
 				case STAMPALISTA: {
 					malattie = dao.findAll();
-
+					IteratorPersona IP = new IteratorPersona();
 					for (int i = -1; i < malattie.size() - 1; i++) {
 						if (hasNext(malattie)) {
 							MainApp mn = new MainApp();
@@ -274,6 +277,30 @@ public class MainApp implements ComponentPattern {
 		position++;
 		Object o = list.get(position);
 		return o != null ? o : null;
+	}
+
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Object next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(List list) throws com.google.protobuf.TextFormat.ParseException, ParseException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(int id, List list) throws com.google.protobuf.TextFormat.ParseException, ParseException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*

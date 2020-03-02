@@ -21,7 +21,7 @@ import it.jac.javadb.entity.Persona;
 @Entity
 @Table(name = "malattia")
 public class Malattia {
-	
+	public static int position = -1;
 	@ManyToMany(cascade=CascadeType.ALL, targetEntity = Persona.class, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "ammalato",
@@ -193,13 +193,4 @@ public class Malattia {
 				return false;
 			return true;
 		}
-		
-		
-
-		
-		//ricontrolla secondo tabella e file word
-
-
-/* da completare */
-
 }

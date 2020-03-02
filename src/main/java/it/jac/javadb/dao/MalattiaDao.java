@@ -14,6 +14,22 @@ import it.jac.javadb.util.HibernateUtil;
 public class MalattiaDao {
 
 	private static final Logger log = LogManager.getLogger(MalattiaDao.class);
+	
+	public boolean testConnessione() {
+		log.debug("try to open session");
+
+		boolean result = false;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+			if (session != null) {
+				result = true;
+			}
+		}
+		log.debug("result " + result);
+
+		return result;
+
+	}
 
 	/* Trova Persona tramite Id */
 	public Malattia findMalattiaById(int id) {

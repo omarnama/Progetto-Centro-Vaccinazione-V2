@@ -18,6 +18,20 @@ public class MalattiaService implements ComponentPattern<Malattia> {
 	private static final Logger log = LogManager.getLogger(MalattiaService.class);
 	private static MalattiaDao dao = new MalattiaDao();
 	
+	
+	/* Prova Hibernate Test Connessione */
+	public void testConnessione() {
+
+		log.info("Test connessione");
+
+		boolean test = dao.testConnessione();
+		if (test) {
+
+			log.info("Test OK");
+		}
+	}
+	
+	
 	Scanner s = new Scanner (System.in);
 	
 	public Malattia findMalattiaById(int id) {

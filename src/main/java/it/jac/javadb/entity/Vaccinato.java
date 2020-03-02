@@ -96,5 +96,54 @@ public class Vaccinato implements Serializable{
 				+ creationUser + ", updateUser=" + updateUser + ", creationTime=" + creationTime + ", updateTime="
 				+ updateTime + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((creationTime == null) ? 0 : creationTime.hashCode());
+		result = prime * result + ((creationUser == null) ? 0 : creationUser.hashCode());
+		result = prime * result + idpersona;
+		result = prime * result + idvaccinazione;
+		result = prime * result + ((updateTime == null) ? 0 : updateTime.hashCode());
+		result = prime * result + ((updateUser == null) ? 0 : updateUser.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vaccinato other = (Vaccinato) obj;
+		if (creationTime == null) {
+			if (other.creationTime != null)
+				return false;
+		} else if (!creationTime.equals(other.creationTime))
+			return false;
+		if (creationUser == null) {
+			if (other.creationUser != null)
+				return false;
+		} else if (!creationUser.equals(other.creationUser))
+			return false;
+		if (idpersona != other.idpersona)
+			return false;
+		if (idvaccinazione != other.idvaccinazione)
+			return false;
+		if (updateTime == null) {
+			if (other.updateTime != null)
+				return false;
+		} else if (!updateTime.equals(other.updateTime))
+			return false;
+		if (updateUser == null) {
+			if (other.updateUser != null)
+				return false;
+		} else if (!updateUser.equals(other.updateUser))
+			return false;
+		return true;
+	}
 	
 }

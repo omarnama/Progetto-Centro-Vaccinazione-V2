@@ -20,16 +20,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import it.jac.javadb.lezione1b.entity.Persona;
-
-/*
- * import it.jac.javadb.lezione1b.entity.Malattia;
-import it.jac.javadb.lezione1b.entity.Vaccinazione;
-import it.jac.javadb.lezione1b.entity.Vaccino;
- */
-
-/* Classe Entita si occupa di dichiarare la tabella ele sue relazioni con le altre e i suoi campi, GET e SET, il metodo toString
- * e metodo hashCode ecc... vedi ....  */
 
 @Entity
 @Table(name = "persona")
@@ -131,15 +121,6 @@ public class Persona implements Serializable {
 	public void setDataNascita(String date2) throws ParseException {
 		this.data_nascita = java.sql.Date.valueOf(date2);
 	}
-	
-	
-//	public Date getDataNascita() {
-//		return data_nascita;
-//	}
-//	
-//	public void setDataNascita(Date date2) {
-//		this.data_nascita=date2;
-//	}
 
 	public String getRecapito_telefonico() {
 		return recapito_telefonico;
@@ -227,32 +208,6 @@ public class Persona implements Serializable {
 //		this.creation_time = creationTime;
 //	}
 	
-	
-
-	/*
-	 * from S Persona - diviso in 2 parti metà sotto metodo Persona (usato per
-	 * creare persona in PersonaDao) e meta infondo
-	 */
-	/*
-	 * public String getCognome() { return cognome; }
-	 * 
-	 * public void setCognome(String cognome) { this.cognome = cognome; }
-	 * 
-	 * public String getRecapitoTelefonico() { return recapito_telefonico; }
-	 * 
-	 * public void setRecapitoTelefonico(String recapito_telefonico) {
-	 * this.recapitoTelefonico = recapito_telefonico; }
-	 * 
-	 * public String getIndirizzoResidenza() { return indirizzo_residenza; }
-	 * 
-	 * public void setIndirizzoResidenza(String indirizzo_residenza) {
-	 * this.indirizzoResidenza = indirizzo_residenza; }
-	 * 
-	 * public java.sql.Date getDataNascita() { return data_nascita; }
-	 * 
-	 * public void setDataNascita(String data_nascita) throws ParseException {
-	 * this.dataNascita = java.sql.Date.valueOf(data_nascita); }
-	 */
 
 	public Persona() {
 		// TODO Auto-generated constructor stub
@@ -315,5 +270,81 @@ public class Persona implements Serializable {
 
 		Iterator<Persona> persone = Persona.iterator();
 		return persone;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
+		result = prime * result + ((creation_time == null) ? 0 : creation_time.hashCode());
+		result = prime * result + ((creation_user == null) ? 0 : creation_user.hashCode());
+		result = prime * result + ((data_nascita == null) ? 0 : data_nascita.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((indirizzo_residenza == null) ? 0 : indirizzo_residenza.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((recapito_telefonico == null) ? 0 : recapito_telefonico.hashCode());
+		result = prime * result + ((update_time == null) ? 0 : update_time.hashCode());
+		result = prime * result + ((update_user == null) ? 0 : update_user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		if (cognome == null) {
+			if (other.cognome != null)
+				return false;
+		} else if (!cognome.equals(other.cognome))
+			return false;
+		if (creation_time == null) {
+			if (other.creation_time != null)
+				return false;
+		} else if (!creation_time.equals(other.creation_time))
+			return false;
+		if (creation_user == null) {
+			if (other.creation_user != null)
+				return false;
+		} else if (!creation_user.equals(other.creation_user))
+			return false;
+		if (data_nascita == null) {
+			if (other.data_nascita != null)
+				return false;
+		} else if (!data_nascita.equals(other.data_nascita))
+			return false;
+		if (id != other.id)
+			return false;
+		if (indirizzo_residenza == null) {
+			if (other.indirizzo_residenza != null)
+				return false;
+		} else if (!indirizzo_residenza.equals(other.indirizzo_residenza))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (recapito_telefonico == null) {
+			if (other.recapito_telefonico != null)
+				return false;
+		} else if (!recapito_telefonico.equals(other.recapito_telefonico))
+			return false;
+		if (update_time == null) {
+			if (other.update_time != null)
+				return false;
+		} else if (!update_time.equals(other.update_time))
+			return false;
+		if (update_user == null) {
+			if (other.update_user != null)
+				return false;
+		} else if (!update_user.equals(other.update_user))
+			return false;
+		return true;
 	}
 }
